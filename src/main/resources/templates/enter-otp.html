@@ -1,0 +1,61 @@
+
+ <!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"> 
+</head>
+<body th:replace="base::layout(~{::section})">
+
+    <section class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+
+                <div th:if="${session.message}"  id="message">
+                    <div th:classappend="${'alert-' + session.message.type}" class="alert alert-success text-center" role="alert">
+                        <span th:text="${session.message.content}"></span>
+        
+                    </div>
+                </div>
+                
+            <script>
+                setTimeout(() => { 
+                    const alertElement = document.querySelector('.alert');
+                    if (alertElement) {
+                        alertElement.style.display = 'none';
+                    }
+                }, 3000); // Hide after 3 seconds
+            </script>
+                <div class="card shadow p-4" id="login">
+                    
+                    <a class="register text-center text-decoration-none  " th:href="@{/register}"> sign up if not yet registered </a> 
+                    <hr>
+                    <h2 class="text-center">Forget password</h2>
+                 
+                    <form th:action="@{/validate-otp}" method="post" class="formlog">
+                        
+
+                        <div class="form-group mb-3">
+                        <label>Enter Otp:</label>
+                        <input type="text" name="otp" class="form-control" required />
+                        </div>
+                   
+                        
+                    
+<hr>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">submit</button>
+                        </div>
+            
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

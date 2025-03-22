@@ -1,0 +1,206 @@
+<!-- <!DOCTYPE html>
+<html lang="en"  xmlns:th="http://thymeleaf.org"th:replace="base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body class="banner d-flex justify-content-center align-items-center">
+    <section class ="banner d-flex justify-content-center align-items-center">
+
+
+    <div class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h1 class="display-4">Manage Your Contacts Smarter</h1>
+                    <p class="lead">
+                        Smart Contact Manager helps you organize and manage your contacts effortlessly.
+                        Stay connected with ease and efficiency.
+                    </p>
+                    <a href="/user/index" class="btn btn-primary btn-lg">Get Started</a>
+                </div>
+                <div class="col-md-6">
+                    <img th:src="@{/img/me.jpg}" alt="Hero Image" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="features-section py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Why Choose Us?</h2>
+            <div class="row">
+                <div class="col-md-4 text-center">
+                    <img th:src="@{/img/phn.jpg}" alt="Easy to Use" class="feature-icon mb-3">
+                    <h3>Easy to Use</h3>
+                    <p>Our intuitive interface makes contact management a breeze.</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <img th:src="@{/img/contact.jpg}" alt="Secure" class="feature-icon mb-3">
+                    <h3>Secure</h3>
+                    <p>Your data is safe with our advanced encryption technology.</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <img th:src="@{/img/use.jpg}" alt="Accessible" class="feature-icon mb-3">
+                    <h3>Accessible</h3>
+                    <p>Access your contacts anytime, anywhere, on any device.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="cta-section bg-dark text-white py-5">
+        <div class="container text-center">
+            <h2>Ready to Get Started?</h2>
+            <p class="lead">Sign up now and take control of your contacts.</p>
+            <a href="/register" class="btn btn-light btn-lg">Sign Up</a>
+        </div>
+    </div>
+    </section>
+</body>
+</html> -->
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | Smart Contact Manager</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- jQuery and Bootstrap JS -->
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+
+    <style>
+        /* Banner Section */
+        .banner {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(to right, rgba(44, 61, 248, 0.8), rgba(153, 105, 243, 0.8)) #ffffff;
+            padding: 20px;
+        }
+        .hero-section h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            animation: fadeInDown 1s ease-in-out;
+        }
+        .hero-section p {
+            font-size: 1.2rem;
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Typing Animation */
+   
+
+        /* Features Section */
+        .features-section i {
+            font-size: 3rem;
+            color: #007bff;
+        }
+
+        /* Call-to-Action Section */
+        .cta-section {
+            background: #343a40;
+            padding: 60px 20px;
+        }
+        .btn-light:hover {
+            background: #fff;
+            color: #000;
+            transition: 0.3s;
+        }
+    </style>
+</head>
+
+<body th:replace="base::layout(~{::section})">
+
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">Smart Contact Manager</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/user/index}">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/register}">Sign Up</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn btn-primary text-white px-4" th:href="@{/login}">Login</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Banner Section -->
+<section class="banner">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 text-lg-start text-center">
+                <h1 class="display-4">Manage Your Contacts Smarter</h1>
+                <p class="lead">Smart Contact Manager helps you organize and manage your contacts effortlessly.</p>
+                <a th:href="@{/user/index}" class="btn btn-primary btn-lg mt-3">Get Started</a>
+            </div>
+            <div class="col-lg-6 text-center mt-4 mt-lg-0">
+                <img th:src="@{/images/img/use.jpg}" alt="Hero Image" class="img-fluid rounded" loading="lazy">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<div class="features-section py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">Why Choose Us?</h2>
+        <div class="row text-center">
+            <div class="col-md-4 col-sm-6 mb-4">
+                <i class="fas fa-user-friends"></i>
+                <h3 class="mt-3">Easy to Use</h3>
+                <p>Our intuitive interface makes contact management a breeze.</p>
+            </div>
+            <div class="col-md-4 col-sm-6 mb-4">
+                <i class="fas fa-lock"></i>
+                <h3 class="mt-3">Secure</h3>
+                <p>Your data is safe with our advanced encryption technology.</p>
+            </div>
+            <div class="col-md-4 col-sm-6 mx-auto">
+                <i class="fas fa-cloud"></i>
+                <h3 class="mt-3">Accessible</h3>
+                <p>Access your contacts anytime, anywhere, on any device.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Call-to-Action Section -->
+<div class="cta-section text-white text-center">
+    <div class="container">
+        <h2>Ready to Get Started?</h2>
+        <p class="lead">Sign up now and take control of your contacts.</p>
+        <a th:href="@{/register}" class="btn btn-light btn-lg mt-3">Sign Up</a>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <section >
+    <br>
+
+   <a th:href="@{/user/show-contacts/0}" class="btn btn-success">View  Contact</a>
+        <div th:if="${session.message}" class="col-md-10 " id="message">
+            <div th:classappend="${'alert-'+session.message.type}" class="alert alert-success text-center" role="alert">
+                <span th:text="${session.message.content}">
+                   
+                    <span  class="text-center"  th:text="${#session.removeAttribute('message')}"></span>
+                </span>
+            </div>
+            <script>
+                setTimeout(() => { 
+                    const alertElement = document.querySelector('.alert');
+                    if (alertElement) {
+                        alertElement.style.display = 'none';
+                    }
+                }, 1000); // Hide after 1 seconds
+            </script>
+        </div>
+       
+        <div class="container bootstrap snippet">
+            <div class="row">
+                <div class="container text-center"><h1>Add Contacts</h1></div>
+            </div>
+
+            <div class="row ">
+                <div class="col-sm-2">
+                    <div class="text-center">
+                        <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
+                        
+                    </div>
+                    <hr/>
+                </div>
+             
+            </div>
+
+            <form class="form" th:object="${contact}" enctype="multipart/form-data" method="post" th:action="@{/user/process-contact}">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label><h4>First Name</h4></label>
+                        <input type="text" class="form-control" placeholder="Enter Name" name="name" id="name" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label><h4>Nick Name</h4></label>
+                        <input type="text" class="form-control" placeholder="Nick Name" name="secondName" id="secondName">
+                    </div>
+                    <div class="col-md-6">
+                        <label><h4>Phone</h4></label>
+                        <input type="text" class="form-control" placeholder="Phone Number" name="phone" id="phone" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label><h4>Email</h4></label>
+                        <input type="email" class="form-control" placeholder="Email" name="email" id="email" >
+                    </div>
+                    <div class="col-md-6">
+                        <label><h4>Work</h4></label>
+                        <input type="text" class="form-control" placeholder="Work" name="work" id="work">
+                    </div>
+                    <div class="col-md-4">
+                        <label><h4>Upload Image</h4></label>
+                        <input type="file" name="imageFile" accept="image/*"/>
+                    </div>
+                    <div class="form-group mt-1">
+                        <label><h4>Description</h4></label>
+                        <textarea placeholder="Enter contact description" name="description" id="description" class="form-control" rows="5"></textarea>
+                    </div>
+                    <div class="col-md-12 mt-3">
+                        <button class="btn btn-lg btn-success" type="submit">
+                            <i class="fa fa-check"></i> Save
+                        </button>
+                        <button class="btn btn-lg btn-secondary" type="reset">
+                            <i class="fa fa-undo"></i> Reset
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <hr />
+        </div>
+    </section>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Contact</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <section class="container mt-5">
+        
+        <div class="card shadow p-4">
+            <div class="d-flex justify-content-start">
+                <a th:href="@{/user/index}" class="back-btn" aria-label="Go back to dashboard">
+                    <i class="fas fa-arrow-left"></i> Back
+                </a>
+            </div>
+            <h3 class="text-center">update profile</h3>
+           
+            <h2 class="text-center mb-4">Update Profile</h2>
+            
+            <form th:action="@{/user/profile-update}" method="post" enctype="multipart/form-data">
+            
+                    <div class="mb-3">
+                    <label class="form-label">contact ID:</label>
+                    <input type="hidden"
+                    class="form-control"
+                    name="cId" th:value="${user.Id}" />
+                    </div>
+                <div class="mb-3">
+                    <label class="form-label">Name:</label>
+                    <input type="text" class="form-control" name="name" th:value="${user.name}" />
+                </div>
+                
+            
+                <div class="mb-3">
+                    <label class="form-label">Profile Image:</label>
+                    <input type="file"  class="form-control" name="imageFile" />
+                </div>
+                <div class="text-center">
+                    <button type="submit"class="btn btn-primary"onclick="return confirm('Are you sure you want to update this profile?')">
+                        <i class="fas fa-save"></i> Update 
+                    </button>
+                    
+                </div>
+            </form>
+        </div>
+    </section>
+    <!-- Bootstrap JS and dependencies -->
+     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

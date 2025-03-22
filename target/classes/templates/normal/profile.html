@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+   
+    </style>
+</head>
+<body class="bodyprofile">
+    <section>
+        <br>
+        <div class="profile-container">
+         
+            <div class="profile-card text-center">
+               
+              
+              <a>    <img th:src="@{/images/{img}(img=${user.imageUrl ?: 'user.png'})}" class="profile-img"alt="Profile Image"></a>
+                <h2 th:text="${user.name}"></h2>
+                <h2 th:text="${user.id}"></h2>
+                <p th:text="${user.email}"></p>
+                <p th:text="${user.enabled}"> Account active </p>
+                <p th:text="${user.role}">Role</p>
+                <p th:text="${user.about}"></p>
+    
+               
+    
+                <a th:href="@{/user/edits/{id}(id=${user.id})}" class="edit-btn">Edit Profile</a>
+            </div>
+        </div>
+    
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

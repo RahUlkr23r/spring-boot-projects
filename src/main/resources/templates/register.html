@@ -1,0 +1,159 @@
+
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+</head>
+<body>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 offset-md-4">
+                    <div class="my-card">
+                        <div th:if="${session.message}" class="alert" th:classappend="${session.message.type}" role="alert">
+                            <p th:text="${session.message.content}"></p>
+                            <!-- Button to close the alert -->
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            <!-- Invoke the removeMessageFromSession method -->
+                            <th:block th:text="${@homeController.removeMessageFromSession()}"></th:block>
+                        </div>
+                        
+                        <script>
+                            // Automatically hide the alert after 5 seconds
+                            setTimeout(() => {
+                                const alertBox = document.getElementById("alert-message");
+                                if (alertBox) {
+                                    alertBox.remove();
+                                }
+                            }, 500); // 5000ms = 5 seconds
+                        </script>
+                        
+                        <!-- Remove the message from the session after the alert is displayed -->
+
+                        
+                    
+                        
+                        <!-- Registration Form -->
+                        <h4 class="text-center">Register Here</h4>
+
+                        <form novalidate  th:action="@{/do_register}" method="post" th:object="${user}" class="form">
+                            <div class="form-group">
+                                <label for="name_field">Your FullName</label>
+                                <input
+                                    name="name"
+                                    type="text"
+                                  class="form-control"
+                                  th:classappend="${#fields.hasErrors('name') ? 'is-invalid' : ''}"
+                                    id="name_field"
+                                    placeholder="Enter here"
+                                    required
+                                    th:value="${user.name}" 
+                                   
+                                    />
+                                   
+                                  <div class="invalid-feedback" th:each="e: ${#fields.errors('name')}"th:text="${e}"></div>
+
+
+                            </div>
+                            <div class="form-group">
+                                <label for="email_field">Your Email</label>
+                                <input
+                                    name="email"
+                                    type="email"
+                                    class="form-control"
+                                    th:classappend="${#fields.hasErrors('email') ? 'is-invalid' : ''}"
+                                    id="email_field"
+                                    placeholder="Enter here"
+                                    required
+                                    th:value="${user.email}" />
+                                    <div class="invalid-feedback" th:each="e: ${#fields.errors('email')}"th:text="${e}"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="password_field">Your Password</label>
+                                <div class="input-group">
+                                    <input 
+                                        name="password" 
+                                        type="password" 
+                                        class="form-control" 
+                                        th:classappend="${#fields.hasErrors('password') ? 'is-invalid' : ''}"
+                                        id="password_field"
+                                        placeholder="Enter your password"
+                                        required 
+                                    />
+                                    <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                                        <i class="bi bi-eye"></i> 
+                                    </button>
+                                    <div class="invalid-feedback" th:each="e : ${#fields.errors('password')}" th:text="${e}"></div>
+                                </div>
+                            
+                               
+                            </div>
+                            
+                            <!-- JavaScript for Toggle Password Visibility -->
+                            <script>
+                                document.addEventListener("DOMContentLoaded", function() {
+                                    try {
+                                        const togglePassword = document.getElementById("togglePassword");
+                                        const passwordField = document.getElementById("password_field");
+                                        const icon = togglePassword.querySelector("i");
+                            
+                                        togglePassword.addEventListener("click", function() {
+                                            if (passwordField.type === "password") {
+                                                passwordField.type = "text";
+                                                icon.classList.replace("bi-eye", "bi-eye-slash");
+                                            } else {
+                                                passwordField.type = "password";
+                                                icon.classList.replace("bi-eye-slash", "bi-eye");
+                                            }
+                                        });
+                                    } catch (error) {
+                                        console.error("Password toggle script error:", error);
+                                    }
+                                });
+                            </script>
+                            
+
+                                <div class="form-group">
+                                    <label for="about_field">About You</label>
+                                    <textarea
+                                        id="about_field"
+                                        name="about"
+                                        rows="3"
+                                        class="form-control"
+                                        placeholder="Write something"
+                                        th:text="${user.about}">
+                                    </textarea>
+                                </div>
+                                
+                            <br>
+                            <div class="form-group form-check">
+                                <input
+                                    type="checkbox"
+                                    name="agreement"
+                                    class="form-check-input"
+                                    id="agreement" />
+                                <label for="agreement">Accept terms and conditions</label>    <a class="register text-center text-decoration-none text-dark" th:href="@{/signin}"> already registered </a> 
+                            </div>
+                            <div class="container text-center">
+                                <button type="submit" class="btn bg-primary text-white">Submit</button>
+                                <button type="reset" class="btn bg-warning text-white">Reset</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+
+
+
+
+
+
+
+
